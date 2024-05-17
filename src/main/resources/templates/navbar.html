@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Navbar</title>
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar bg-body-tertiary m-4 shadow rounded">
+    <div class="container-fluid">
+        <a class="navbar-brand " href="/"><img th:src="@{/static/photos/mango-logo.png}" alt="Logo"
+                                               height="50"
+                                               class="d-inline-block align-top mx-3"></a>
+        <a class="text-white offset-9" href="/basket">
+            <button type="button" class="btn btn-warning position-relative text-white">Basket</button>
+<!--            <span th:text="${#lists.size(basketProducts)}" class="top-0 start-100 translate-middle badge rounded-pill bg-danger">-->
+            </span>
+        </a>
+        <a sec:authorize="isAnonymous" class="btn btn-dark text-white me-4 px-3" href="/login">Login</a>
+        <div sec:authorize="isAuthenticated" class="dropdown bg-light-subtle">
+            <button  class="btn btn-secondary dropdown-toggle me-3" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Username
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item " href="#">My Orders</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a class="dropdown-item" href="#">Admin Page</a></li>
+                <li><a class="dropdown-item" href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

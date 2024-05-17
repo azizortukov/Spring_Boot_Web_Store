@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Product page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="row mt-4">
+    <div class="col-4 offset-4">
+        <div class="card p-2">
+            <h1>Add Product</h1>
+            <form method="post" action="/admin/product/add" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
+                <input name="name" class="form-control my-4" type="text" placeholder="Name" required="">
+                <input name="price" class="form-control my-4" type="number" placeholder="Price" required="">
+                <select name="categoryId" class="form-control my-4">
+                    <option value="" selected disabled>Select Category</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}"
+                            th:text="${category.name}"></option>
+                </select>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Choose Image for Product:</label>
+                    <input class="form-control" type="file" id="formFile" name="image" required="">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-warning text-white mx-4 px-5" type="submit">Save</button>
+                    <a class="btn btn-dark px-5" href="/">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
