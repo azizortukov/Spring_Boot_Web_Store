@@ -42,18 +42,18 @@ public class ModelAttributeService {
         return "basket";
     }
 
-    @SuppressWarnings("unchecked")
-    public String basketProduct(UUID productId, MethodType methodType, Model model, HttpSession session) {
-        Map<Product, Integer> basketProducts = (Map<Product, Integer>) session.getAttribute("basketProducts");
-        switch (methodType) {
-            case ADD: basketProducts.put(productService.findById(productId), 1);
-            case REMOVE: basketProducts.remove(productService.findById(productId));
-        }
-
-        model.addAttribute("basketProducts", basketProducts);
-        session.setAttribute("basketProducts", basketProducts);
-        return "redirect:/";
-    }
+//    @SuppressWarnings("unchecked")
+//    public String basketProduct(UUID productId, MethodType methodType, Model model, HttpSession session) {
+//        Map<Product, Integer> basketProducts = (Map<Product, Integer>) session.getAttribute("basketProducts");
+//        switch (methodType) {
+//            case ADD: basketProducts.put(productService.findById(productId), 1);
+//            case REMOVE: basketProducts.remove(productService.findById(productId));
+//        }
+//
+//        model.addAttribute("basketProducts", basketProducts);
+//        session.setAttribute("basketProducts", basketProducts);
+//        return "redirect:/";
+//    }
 
     @SuppressWarnings("unchecked")
     public String basketAmount(UUID productId, MethodType methodType, HttpSession session) {

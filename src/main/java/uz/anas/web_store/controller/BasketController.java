@@ -25,13 +25,13 @@ public class BasketController {
     }
 
     @GetMapping("/add/{productId}")
-    public String addProduct(@PathVariable UUID productId, Model model, HttpSession session) {
-        return modelAttributeService.basketProduct(productId, MethodType.ADD, model, session);
+    public String addProduct(@PathVariable UUID productId, HttpSession session) {
+        return modelAttributeService.basketAddProduct(productId, session);
     }
 
     @GetMapping("/remove/{productId}")
-    public String removeProduct(@PathVariable UUID productId, Model model, HttpSession session) {
-        return modelAttributeService.basketProduct(productId, MethodType.REMOVE, model, session);
+    public String removeProduct(@PathVariable UUID productId, HttpSession session) {
+        return modelAttributeService.basketRemoveProduct(productId, session);
     }
 
     @GetMapping("/addAmount/{productId}")
