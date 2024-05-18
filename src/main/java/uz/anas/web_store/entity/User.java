@@ -2,6 +2,7 @@ package uz.anas.web_store.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "Users")
 public class User implements UserDetails {
 

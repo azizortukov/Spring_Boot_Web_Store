@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(manager -> {
             manager
-                    .requestMatchers("/","/login", "/css/**", "/basket", "/basket/**", "/file/**").permitAll()
+                    .requestMatchers("/","/login", "/css/**", "/basket", "/basket/**", "/file/**", "/sign-up").permitAll()
                     .requestMatchers(HttpMethod.POST, "/file/**").denyAll()
                     .anyRequest()
                     .authenticated();
@@ -38,9 +38,16 @@ public class SecurityConfig {
         });
         http.rememberMe(manager -> {
             manager
-                    .alwaysRemember(true)
-//                    .rememberMeParameter("remember-me")
+                    .useSecureCookie(false)
+                    .rememberMeParameter("rem_me")
                     .tokenValiditySeconds(60 * 60 * 24 * 30);
+        });
+
+        http.logout(manager -> {
+            manager.logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID");
         });
 
         http.userDetailsService(customUserDetailsService);
