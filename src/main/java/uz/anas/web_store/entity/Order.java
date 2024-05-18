@@ -43,4 +43,8 @@ public class Order {
         return time.format(formatter);
     }
 
+    public Integer getTotalSum() {
+        return orderProducts.stream().mapToInt(OrderProduct::getTotalPrice).sum();
+    }
+
 }

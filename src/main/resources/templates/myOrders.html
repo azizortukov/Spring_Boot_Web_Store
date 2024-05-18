@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<th:block th:insert="navbar::navbar"></th:block>
+
+<div class="row">
+    <div class="col-6 offset-3 mt-5 text-center">
+        <div class="dropdown">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Created at</th>
+                    <th>Completed at</th>
+                    <th>Status</th>
+                    <th>Order Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="order : ${orders}">
+                    <tr>
+                        <p class="d-inline-flex gap-1">
+                            <td th:text="${order.id}"></td>
+                            <td th:text="${order.showDateTime(order.dateTime)}"></td>
+                            <td th:text="${order.showDateTime(order.completedTime)}"></td>
+                            <td th:text="${order.status}"></td>
+                        </p>
+                        <td>
+                            <p class="d-inline-flex gap-1">
+                                <button class="btn btn-light" type="button" data-bs-toggle="collapse"
+                                        th:data-bs-target="'#Order' + ${order.id}" aria-expanded="false"
+                                        th:aria-controls="'Order' + ${order.id}">
+                                    View order detail
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div class="collapse" th:id="'Order' + ${order.id}">
+                                <div class="card card-body">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Amount</th>
+                                            <th>Product price</th>
+                                            <th>Total product price</th>
+                                            <th>Total order price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="orderProduct : ${order.getOrderProducts()}">
+                                            <td th:text="${orderProduct.getProduct().getName()}"></td>
+                                            <td th:text="${orderProduct.getAmount()}"></td>
+                                            <td th:text="${orderProduct.getProduct().getPrice}"></td>
+                                            <td th:text="${orderProduct.getTotalPrice()}"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td th:text="${order.getTotalSum()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-dark text-white text-center mt-2" href="/">Back</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

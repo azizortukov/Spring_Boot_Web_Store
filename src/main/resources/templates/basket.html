@@ -33,7 +33,7 @@
                 <div style="display: flex;align-items: start">
                     <h3 class="mx-2" th:text="'Overall: ' + ${@orderProductService.getBasketSum(basketProducts)} + '$'"></h3>
                     <a class="btn btn-dark text-white offset-1 " href="/">Back</a>
-                    <a class="btn btn-warning text-white mx-4" href="/client/order/confirm">Confirm Order</a>
+                    <a class="btn btn-warning text-white mx-4" th:if="${#maps.size(basketProducts)} > 0" href="/client/order/confirm">Confirm Order</a>
                 </div>
             </div>
         </div>

@@ -38,7 +38,8 @@ public class SecurityConfig {
         });
         http.rememberMe(manager -> {
             manager
-                    .rememberMeParameter("remember-me")
+                    .alwaysRemember(true)
+//                    .rememberMeParameter("remember-me")
                     .tokenValiditySeconds(60 * 60 * 24 * 30);
         });
 

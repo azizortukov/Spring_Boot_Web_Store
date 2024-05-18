@@ -22,8 +22,8 @@
                 Username
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item " href="#">My Orders</a></li>
-                <li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a class="dropdown-item" href="#">Admin Page</a></li>
+                <li><a class="dropdown-item " href="/client/my_orders">My Orders</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a class="dropdown-item" href="/admin/">Admin Page</a></li>
                 <li><a class="dropdown-item" href="/logout">Log out</a></li>
             </ul>
         </div>

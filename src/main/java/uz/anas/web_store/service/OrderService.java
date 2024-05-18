@@ -29,4 +29,8 @@ public class OrderService {
                 .status(Status.NEW)
                 .build());
     }
+
+    public List<Order> findUserOrders(User user) {
+        return orderRepo.findAllByUserAndStatusNot(user, Status.ARCHIVED);
+    }
 }

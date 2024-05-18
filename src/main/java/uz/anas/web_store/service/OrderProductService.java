@@ -1,14 +1,11 @@
 package uz.anas.web_store.service;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.anas.web_store.entity.OrderProduct;
 import uz.anas.web_store.model.response.ProductResponseDto;
 import uz.anas.web_store.repo.OrderProductRepo;
 import uz.anas.web_store.repo.ProductRepo;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,16 +35,5 @@ public class OrderProductService {
             sum += entry.getKey().price() * entry.getValue();
         }
         return sum;
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public Map<ProductResponseDto, Integer> getFromSession(HttpSession session) {
-        Map<ProductResponseDto, Integer> basketProducts = (Map<ProductResponseDto, Integer>) session.getAttribute("basketProducts");
-        if (basketProducts == null) {
-            basketProducts = new HashMap<>();
-            session.setAttribute("basketProducts", basketProducts);
-        }
-        return basketProducts;
     }
 }
