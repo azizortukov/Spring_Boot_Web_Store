@@ -12,14 +12,14 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
+public class IndexController {
 
     private final ModelAttributeService modelAttributeService;
     private final HttpSession httpSession;
 
     @GetMapping
-    public String home(@RequestParam(required = false) UUID categoryId, @RequestParam(required = false) UUID orderNotification, Model model) {
-        return modelAttributeService.home(categoryId, orderNotification, model, httpSession);
+    public String index(@RequestParam(required = false) UUID categoryId, Model model) {
+        return modelAttributeService.index(categoryId, model, httpSession);
     }
 
 }

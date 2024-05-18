@@ -17,8 +17,4 @@ public class CategoryService {
         return categoryRepo.findAll();
     }
 
-    public Category save(Category category) {
-        return categoryRepo.save(category);
-    }
-
 }

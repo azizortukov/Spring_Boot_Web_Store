@@ -13,14 +13,6 @@ public class UserService {
 
     private final UserRepo userRepo;
 
-    public User save(User user) {
-        return userRepo.save(user);
-    }
-
-    public List<User> findAll() {
-        return userRepo.findAll();
-    }
-
     public User findByEmail(String email) {
         return userRepo.findUserByEmail(email);
     }

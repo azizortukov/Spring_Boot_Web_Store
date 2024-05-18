@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import uz.anas.web_store.entity.enums.MethodType;
 import uz.anas.web_store.service.ModelAttributeService;
 
 import java.util.UUID;
@@ -36,12 +35,12 @@ public class BasketController {
 
     @GetMapping("/addAmount/{productId}")
     public String addAmountProduct(@PathVariable UUID productId, HttpSession session) {
-        return modelAttributeService.basketAmount(productId, MethodType.ADD, session);
+        return modelAttributeService.basketAddAmount(productId, session);
     }
 
     @GetMapping("/removeAmount/{productId}")
     public String removeAmountProduct(@PathVariable UUID productId, HttpSession session) {
-        return modelAttributeService.basketAmount(productId, MethodType.REMOVE, session);
+        return modelAttributeService.basketRemoveAmount(productId, session);
     }
 
 }

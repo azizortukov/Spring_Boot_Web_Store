@@ -7,12 +7,12 @@
 
 <nav th:fragment="navbar" class="navbar bg-body-tertiary m-4 shadow rounded">
     <div class="container-fluid">
-        <a class="navbar-brand " href="/"><img th:src="@{/static/photos/mango-logo.png}" alt="Logo"
+        <a class="navbar-brand " href="/"><img src="/file/logo" alt="Logo"
                                                height="50"
                                                class="d-inline-block align-top mx-3"></a>
         <a class="text-white offset-9" href="/basket">
             <button type="button" class="btn btn-warning position-relative text-white">Basket</button>
-<!--            <span th:text="${#lists.size(basketProducts)}" class="top-0 start-100 translate-middle badge rounded-pill bg-danger">-->
+            <span th:text="${#maps.size(basketProducts)}" class="top-0 start-100 translate-middle badge rounded-pill bg-danger">
             </span>
         </a>
         <a sec:authorize="isAnonymous" class="btn btn-dark text-white me-4 px-3" href="/login">Login</a>
